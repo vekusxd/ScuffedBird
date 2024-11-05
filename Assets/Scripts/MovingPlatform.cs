@@ -6,7 +6,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] float speed = 2.0f;
     [SerializeField] public float startX = 0f;
     [SerializeField] public float restartX = -6.0f;
-    [SerializeField] public MovingPlatformState movingPlatformState;
+    public MovingPlatformState movingPlatformState;
 
     private void Start()
     {
