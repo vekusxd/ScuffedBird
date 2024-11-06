@@ -8,11 +8,6 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] public float restartX = -6.0f;
     public MovingPlatformState movingPlatformState;
 
-    private void Start()
-    {
-
-    }
-
     // Update is called once per frame
     private void Update()
     {
