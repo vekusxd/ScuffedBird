@@ -8,7 +8,5 @@ public class Pipe : MonoBehaviour
         {
             Destroy(transform.parent.gameObject);
         }
-        //Destroy(gameObject);
-        
     }
 }

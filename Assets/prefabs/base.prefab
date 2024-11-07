@@ -104,7 +104,7 @@ MonoBehaviour:
   speed: 2
   startX: 3.15
   restartX: -3.47
-  movingPlatformState: {fileID: 11400000, guid: b51a88ebfabedac43bfc68860c4d0c9b, type: 2}
+  gameState: {fileID: 11400000, guid: 808dc4519bafb374ba6140f032ca244b, type: 2}
 --- !u!61 &8601638125131276838
 BoxCollider2D:
   m_ObjectHideFlags: 0

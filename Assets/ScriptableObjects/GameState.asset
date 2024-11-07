@@ -10,6 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30233fd1c2dbf744597e4050addbb3b0, type: 3}
-  m_Name: MovingPlatformState
+  m_Name: GameState
   m_EditorClassIdentifier: 
-  ShouldMove: 1
+  FloorShouldMove: 0
+  PipesShouldMove: 0
+  GameOver: 1
+  Score: 0

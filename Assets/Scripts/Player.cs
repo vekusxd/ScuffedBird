@@ -1,15 +1,15 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public MovingPlatformState movingPlatformState;
+    public GameState gameState;
     [SerializeField] public float JumpPower = 2.0f;
     [SerializeField] public float AngleChangePower = 10.0f;
-    [SerializeField] public float linearVelocityThreshHold = 0.0f;
-
+    [SerializeField] FlashImage m_flashImage = null;
 
     private bool isColided = false;
     private bool acceptControl = true;
@@ -18,12 +18,19 @@ public class Player : MonoBehaviour
     private Animator animator;
     private AudioSource m_audioSource;
 
+    public AudioSource hitSound;
+    public AudioSource dieSound;
+    public GameObject restartButton;
+
+    private bool hitPlayed = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         m_audioSource = GetComponent<AudioSource>();
-        movingPlatformState.ShouldMove = true;
+        gameState.GameOver = false;
+        gameState.Score = 0;
     }
 
     private void FixedUpdate()
@@ -40,33 +47,60 @@ public class Player : MonoBehaviour
 
         float angle;
 
-        if (rb.linearVelocityY > linearVelocityThreshHold)
+        if (rb.linearVelocityY > 0)
         {
-            angle = Mathf.Lerp(0, 35, rb.linearVelocityY / AngleChangePower);
+            angle = Mathf.LerpAngle(20, 60, rb.linearVelocityY / AngleChangePower);
         }
         else
         {
-            angle = Mathf.Lerp(0, -90, -rb.linearVelocityY / AngleChangePower);
+            angle = Mathf.LerpAngle(0, -90, -rb.linearVelocityY / AngleChangePower);
         }
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        acceptControl = false;
+       
+
         if (collision.gameObject.CompareTag("Floor"))
         {
+            
             isColided = true;
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0.0f;
             rb.bodyType = RigidbodyType2D.Kinematic;
+            gameState.GameOver = true;
+            acceptControl = false;
+            gameState.GameOver = true;
+
+            if (!hitPlayed)
+            {
+                m_flashImage.StartFlash(0.3f, 0.5f,Color.black);
+                ShowButton();
+                hitPlayed = true;
+                hitSound.Play();
+            }
         }
 
         if (collision.gameObject.CompareTag("Pipe"))
         {
-            //Debug.Log("Pipe hit");
-            //gameObject.layer = LayerMask.NameToLayer("IgnorePipes");
+            acceptControl = false;
+            gameState.GameOver = true;
+            gameState.GameOver = true;
+            gameObject.layer = LayerMask.NameToLayer("IgnorePipes");
+            dieSound.Play();
+            if (!hitPlayed)
+            {
+                m_flashImage.StartFlash(0.3f, 0.5f, Color.black);
+                ShowButton();
+                hitPlayed = true;
+                hitSound.Play();
+            }
         }
     }
 
+    private void ShowButton()
+    {
+        restartButton.SetActive(true);
+    }
 }

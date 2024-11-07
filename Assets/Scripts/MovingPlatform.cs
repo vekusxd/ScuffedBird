@@ -6,12 +6,12 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] float speed = 2.0f;
     [SerializeField] public float startX = 0f;
     [SerializeField] public float restartX = -6.0f;
-    public MovingPlatformState movingPlatformState;
+    public GameState gameState;
 
     // Update is called once per frame
     private void Update()
     {
-        if (movingPlatformState.ShouldMove)
+        if (!gameState.GameOver)
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
 
@@ -24,6 +24,8 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        movingPlatformState.ShouldMove = false;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+        }
     }
 }

@@ -49,7 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PipeMoveSpeed: 2
-  movingPlatformState: {fileID: 11400000, guid: b51a88ebfabedac43bfc68860c4d0c9b, type: 2}
+  gameState: {fileID: 11400000, guid: 808dc4519bafb374ba6140f032ca244b, type: 2}
+  text: {fileID: 0}
 --- !u!61 &1882716500509808975
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84,7 +85,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.11419809, y: -2.1954474}
+  m_Offset: {x: 0.531798, y: -2.1273603}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -94,7 +95,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24976945, y: 1.0979195}
+  m_Size: {x: 0.21345639, y: 1.0706844}
   m_EdgeRadius: 0
 --- !u!82 &8542645189055408727
 AudioSource:
@@ -211,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8502983422089090504, guid: 3add787655667ec47b035bb329278e1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.38
+      value: -4.24
       objectReference: {fileID: 0}
     - target: {fileID: 8502983422089090504, guid: 3add787655667ec47b035bb329278e1d, type: 3}
       propertyPath: m_LocalPosition.z
